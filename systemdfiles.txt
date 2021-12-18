@@ -1,0 +1,42 @@
+#This was for the old versions scheduling system, however, cronjob was #requested.
+[Unit]
+Description=Local Db to Web
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=homepimu_codePhase2Code
+ExecStart=homepimu_codePhase2CodeSendLocalOver.py
+
+[Install]
+WantedBy=multi-user.target
+
+
+#
+[Unit]
+Description=run my script
+
+[Timer]
+Unit=myservice.service
+OnBootSec=59
+OnCalendar=*-*-* *:00
+Persistent=true
+
+
+[Install]
+WantedBy=timers.target
+
+#
+[Unit]
+Description = Start getting sensor data
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/pi/mu_code/Phase2Code
+ExecStart=/home/pi/mu_code/Phase2Code/DHTSensor.py
+
+
+[Install]
+WantedBy=multi-user.target
