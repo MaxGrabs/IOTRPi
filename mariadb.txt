@@ -1,0 +1,12 @@
+sudo apt install mariadb-server
+sudo mysql -uroot -p
+CREATE DATABASE dht2db;
+CREATE USER 'dima'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON dht2db.* TO 'dima'@'localhost';
+FLUSH PRIVILEGES;
+
+
+sudo mysql -u dima -p
+use dht2db;
+CREATE TABLE Sensordata(pi_id tinyint,data varchar(45),data_type varchar(45),date_time varchar(45),sentdata int);
+

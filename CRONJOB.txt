@@ -1,0 +1,2 @@
+crontab -e
+15,30 * * * * python3 /home/pi/mu_code/Phase2Code/DHTSensor.py
